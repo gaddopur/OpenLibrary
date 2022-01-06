@@ -20,7 +20,7 @@ This project contains api for OpenLibarary and this project used `Django Rest Fr
 
 
 ## How to run the webapp?
-1. First pull the OpenLibrary `git pull https://github.com/gaddopur/OpenLibrary`.
+1. First pull the OpenLibrary `git pull https://github.com/gaddopur/OpenLibrary.git`.
 2. Install docker if already not installed.
 3. Open three terminals and go to the location of each service folder and type ```docker-compose up```.
 
