@@ -125,3 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'users.CustomUser'
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [ 
+        # ... auth classes here ... 
+    ]
+}
