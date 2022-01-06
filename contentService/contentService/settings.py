@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'contentService.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'admin',
+        'NAME': 'contentservice',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'db',
