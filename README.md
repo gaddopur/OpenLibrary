@@ -12,7 +12,7 @@ This project contains api for OpenLibarary and this project used `Django Rest Fr
 
 ### User Interaction Service
 1. `http://127.0.0.1:8001/userbook/like` it accept only **post request** which helps user to like any book.
-2. `http://127.0.0.1:8001/userbook/read` it accept only **post request** which helps user to read any book.
+2. `http://127.0.0.1:8001/userbook/read` it accept only **post request** which helps system to know that book was read by some user.
 
 ### User Service 
 1. `http://127.0.0.1:8002/users` it accept **get and post** request which helps to get all the user and to create the user.
