@@ -8,3 +8,6 @@ class BookUser(models.Model):
     bookid = models.IntegerField()
     read = models.BooleanField(default=False)
     like = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = ('userid', 'bookid')
