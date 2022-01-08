@@ -20,9 +20,6 @@ class BookUserAPIView(viewsets.ViewSet):
             return False
 
     def like(self, request):
-        serializer = BookUserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         instance = self.valid_user(request)
         if instance:
             if instance.like == False:
@@ -32,12 +29,9 @@ class BookUserAPIView(viewsets.ViewSet):
                 return Response(BookUserSerializer(instance).data, status=status.HTTP_200_OK)
             return Response("User already liked this book!", status=status.HTTP_400_BAD_REQUEST)
         
-        return Response("please make sure userid exist!", status=status.HTTP_400_BAD_REQUEST)
+        return Response("please make sure userid exist and data is in correct format", status=status.HTTP_400_BAD_REQUEST)
 
     def read(self, request):
-        serializer = BookUserSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         instance = self.valid_user(request)
         if instance:
             if instance.read == False:
@@ -47,5 +41,5 @@ class BookUserAPIView(viewsets.ViewSet):
                 return Response(BookUserSerializer(instance).data, status=status.HTTP_200_OK)
             return Response("User already read this book!", status=status.HTTP_400_BAD_REQUEST)
         
-        return Response("please make sure userid exist!", status=status.HTTP_400_BAD_REQUEST)
+        return Response("please make sure userid exist and data is in correct format", status=status.HTTP_400_BAD_REQUEST)
 
