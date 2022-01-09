@@ -1,21 +1,39 @@
-import pika, json, os, django
+import pika, json, os, django, time
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bookInteraction.settings")
 django.setup()
 
+from django.db import connection as dbcon
 from userbook.models import User, Book
+
 
 params = pika.URLParameters('amqps://einowjtq:BFYTVe9jVHse4IBBQIRq_R6l9EnsJwxU@chimpanzee.rmq.cloudamqp.com/einowjtq')
 
+def checkTableExists(table):
+    dbcur = dbcon.cursor()
+    dbcur.execute("""
+        SELECT COUNT(*)
+        FROM information_schema.tables
+        WHERE table_name = '{}'
+        """.format(table))
+    if dbcur.fetchone()[0] == 1:
+        dbcur.close()
+        return True
 
+    dbcur.close()
+    return False
 
 def worker(queue_name):
+    while not checkTableExists('userbook_user') and not checkTableExists('userbook_book'):
+        print("Migration is not completed!")
+        time.sleep(0.5)
+    
     connection = pika.BlockingConnection(params)
 
     channel = connection.channel()
 
     channel.queue_declare(queue=queue_name)
-
+    
     def callback(ch, method, properties, body):
         print('Received in userinteraction')
         id = json.loads(body)

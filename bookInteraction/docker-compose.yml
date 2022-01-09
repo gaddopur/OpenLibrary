@@ -19,7 +19,8 @@ services:
       dockerfile: Dockerfile
     command: "python -u userConsumer.py"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
       
   db:
     image: mysql:5.7.22
