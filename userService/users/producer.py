@@ -6,7 +6,6 @@ params = pika.URLParameters('amqps://einowjtq:BFYTVe9jVHse4IBBQIRq_R6l9EnsJwxU@c
 
 
 def publish(method, body):
-    print("Hii I am here")
     connection = pika.BlockingConnection(params)
     channel = connection.channel()
 
